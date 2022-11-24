@@ -1,10 +1,5 @@
 const _$ = (selector) => document.querySelector(selector)
 const _$$ = (selector) => document.querySelectorAll(selector)
-
-console.log(
-    _$$("form * button")
-)
-
 function init() {
     // CustomCroppr
     ["ApplicantImage", "ApplicantSign"].forEach(fileTagID => {
