@@ -1,6 +1,6 @@
 @font-face {
     font-family: mangal;
-    src: url("/lib/Font Mangal Regular/Mangal Regular.ttf");
+    src: url("../lib/Mangal Regular.ttf");
 }
 
 * {
