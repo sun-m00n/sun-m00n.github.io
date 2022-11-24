@@ -19,13 +19,13 @@
     </div>
 
     <div class="page center-flex" id="gallery">
-        <div class="card" style="background-image: url('https://sun-m00n.github.io/palava site/images/640x750_02.jpg');">
+        <div class="card" style="background-image: url('images/640x750_02.jpg');">
             <span>Lush green space</span>
         </div>
-        <div class="card" style="background-image: url('https://sun-m00n.github.io/palava site/images/12246_oth_Ganesha_Temple_Palava.jpg');">
+        <div class="card" style="background-image: url('images/12246_oth_Ganesha_Temple_Palava.jpg');">
             <span>Ganesh Temple</span>
         </div>
-        <div class="card" style="background-image: url('https://sun-m00n.github.io/palava site/images/Commercial-Timeline-at-Lodha-Palava-760x484.jpg');">
+        <div class="card" style="background-image: url('images/Commercial-Timeline-at-Lodha-Palava-760x484.jpg');">
             <span>Commercials</span>
         </div>
     </div>
@@ -60,7 +60,25 @@
 
     <button id="enquiry_btn">Enquiry</button>
 
-    <script src="main.js"></script>
+    <script>
+        const _$ = (Selector) => document.querySelector(Selector)
+
+        const EnquiryBox = {
+            view: () => {
+                window.scrollTo(0, document.body.scrollHeight)
+            }
+        }
+
+        _$("#enquiry_btn").onclick = EnquiryBox.view
+        window.onscroll = function () {
+            if (window.scrollY < 1000 || window.scrollY > 1600) _$("#enquiry_btn").style.display = "initial"
+            else if (window.scrollY > 1000 && window.scrollY < 1600) _$("#enquiry_btn").style.display = "none"
+        }
+        _$("form").onsubmit = function (e) {
+            _$("form").reset()
+        }
+
+    </script>
     </body>
 
 </html>
