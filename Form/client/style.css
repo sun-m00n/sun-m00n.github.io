@@ -1,0 +1,156 @@
+@font-face {
+    font-family: mangal;
+    src: url("/lib/Font Mangal Regular/Mangal Regular.ttf");
+}
+
+* {
+    font-family: mangal;
+    font-size: small;
+    word-spacing: 3px;
+}
+
+html,
+body {
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: x-large;
+}
+
+/* form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 270px;
+    width: 81%;
+    max-width: 480px;
+    min-width: 300px;
+    padding: 15px;
+
+    box-shadow: 0 0 4px silver;
+    border-radius: 6px;
+}
+
+form * input[type="text"],
+form * input[type="number"],
+form * input[type="date"],
+form * input[type="time"],
+form * input[type="tel"],
+form * textarea {
+    min-width: 180px;
+    width: 60%;
+    max-width: 360px;
+}
+
+input,
+textarea,
+button {
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+/* heading / title */
+h1 {
+    align-self: center;
+}
+
+/* buttons */
+form button {
+    width: fit-content !important;
+    padding: 2px 36px;
+}
+
+.txt_btn {
+    padding: 5px 6px;
+    line-height: 100%;
+    background: none;
+}
+
+button:hover {
+    background-color: tomato;
+    color: white;
+}
+
+button[type="button"] {
+    margin: 6px;
+}
+
+button[type="submit"] {
+    background-color: limegreen;
+    color: white;
+    padding: 9px 32px;
+    border: 9px soild transparent;
+}
+
+/* input fields */
+input[type="file"] {
+    border: none;
+}
+
+input,
+textarea {
+    padding: 3px 9px;
+}
+
+input:hover,
+input:focus,
+input:active,
+textarea:hover,
+textarea:active,
+textarea:focus {
+    border-color: skyblue;
+    outline-color: skyblue;
+    accent-color: skyblue;
+}
+
+.textBox {
+    position: relative;
+}
+
+.textBox span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    height: fit-content;
+    width: fit-content;
+    padding: 0 3px;
+
+    transform: translate(0.5rem, 12%);
+    transform-origin: 0 0;
+    transition: transform 120ms ease-in;
+}
+
+input[type="number"]+span {
+    transform: translate(0.5rem, -9%);
+}
+
+.textBox .input:not(:-moz-placeholder-shown)+span {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+.textBox .input:not(:-ms-input-placeholder)+span {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+.textBox .input:focus+span,
+.textBox .input:not(:placeholder-shown)+span {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+
+/*  */
+.column {
+    display: flex;
+    flex-direction: column;
+}
