@@ -10,45 +10,32 @@
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="../lib/mermaid.min.css"> -->
     <!-- <script src="../lib/gridjs.min.js"></script> -->
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <!-- <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" /> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/gridjs@5.1.0/dist/gridjs.min.js"></script> -->
-    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <!-- <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script> -->
 </head>
 
 <body>
-
-    <!-- <header>
-        <div class="list">
-            <label>
-                <input type="text" placeholder="Search">
-            </label>
-            <button type="button">Download</button>
-        </div>
-        <br>
-        <div class="list">
-            <input type="checkbox">
-            <label>ID</label>
-            <label>NAME</label>
-            <label>DATE</label>
-        </div>
+    <header>
+        <input type="text" name="search" id="search_bar" placeholder="Search">
+        <button type="button" class="icon_btn">
+            <img src="../lib/search-icon.svg">
+        </button>
+        <button type="button" class="icon_btn">
+            <img src="../lib/move-down-icon.svg">
+        </button>
     </header>
-
-    <main>
-        <div class="list">
+    <span class="list_header">
+        <label>
             <input type="checkbox">
-            <input type="text" value="id" readonly>
-            <input type="text" value="name" readonly>
-            <input type="date" value="date" readonly>
-            <button type="button">View</button>
-            <button type="button">Download</button>
-        </div>
-    </main> -->
-    <script type="module">
-        import {
-            Grid,
-            html
-        } from "https://unpkg.com/gridjs?module";
-    </script>
+            <span>Select All</span>
+        </label>
+        <button type="button">Refresh</button>
+        <a href="http://" target="_blank" rel="noopener noreferrer">
+            <button type="button">Open Form</button>
+        </a>
+    </span>
+    <main></main>
     <script src="main.js"></script>
 </body>
 

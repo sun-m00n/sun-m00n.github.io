@@ -1,0 +1,48 @@
+/* color palatte */
+:root {
+    --clr-1: white;
+    --clr-2: #000000f3;
+    --clr-3: tomato;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+input {
+    padding: 3px 9px;
+    border: none;
+    outline: none;
+}
+
+button {
+    width: fit-content !important;
+    padding: 6px 24px;
+    border: 1px solid;
+    border-radius: 3px;
+    margin: 6px;
+}
+
+.icon_btn {
+    padding: 5px 6px;
+    line-height: 100%;
+    background: none;
+}
+
+.icon_btn img {
+    max-width: 15px;
+}
+
+button:hover {
+    background-color: tomato;
+    color: white;
+}
+
+/* header */
+header input {
+    padding: 6px 9px;
+    border: 1px solid;
+    border-radius: 6px;
+}
