@@ -13,7 +13,7 @@ let input_names = [];
     let names = [];
     document.querySelectorAll("[name]").forEach(node => {
         if (node.tagName == "META") return
-        // node.setAttribute("required", true)
+        node.setAttribute("required", true)
         names.push(node.name)
     })
     input_names = new Set(names)
@@ -48,6 +48,8 @@ function handleFormSubmission(e) {
         // console.log(name)
     })
 
+
+
     // console.log(api_key())
     // console.log(JSON.stringify(data))
     let myHeaders = new Headers();
@@ -55,10 +57,10 @@ function handleFormSubmission(e) {
 
     fetch("https://script.google.com/macros/s/AKfycbxQQbzNOoLTpHdxCJCdy6WR_yb49BQnWhUk9azF0yVII5sBrrmH_sERts7TKMgZQCRH/exec", {
         method: "POST",
-        headers: myHeaders,
+        // headers: myHeaders,
         body: JSON.stringify(data),
-        redirect: "follow",
-        mode: "cors"
+        // redirect: "follow",
+        // mode: "cors"
     })
         // .then(response => console.log(response))
         .then(response => response.json())
