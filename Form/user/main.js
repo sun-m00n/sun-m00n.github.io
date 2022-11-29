@@ -55,7 +55,7 @@ function handleFormSubmission(e) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch("https://script.google.com/macros/s/AKfycbxQQbzNOoLTpHdxCJCdy6WR_yb49BQnWhUk9azF0yVII5sBrrmH_sERts7TKMgZQCRH/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwp1qkRfKWUYBZUF4avhbGgDRWXcnrkfRoXcZaXRJHgFmlafbqr-HlG8uTpWPdGV4fb/exec", {
         method: "POST",
         // headers: myHeaders,
         body: JSON.stringify(data),
