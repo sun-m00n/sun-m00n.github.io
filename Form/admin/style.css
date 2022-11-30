@@ -8,7 +8,7 @@
 html,
 body {
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 input {
@@ -19,6 +19,7 @@ input {
 
 button {
     width: fit-content !important;
+    background-color: transparent;
     padding: 6px 24px;
     border: 1px solid;
     border-radius: 3px;

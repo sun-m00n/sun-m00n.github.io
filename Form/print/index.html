@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आगरी समाज प्रबोधन संस्था</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="../lib/html2pdf.bundle.min.js"></script>
+
+</head>
+
+<body>
+    <button onclick="print()">PRINT</button>
+    <br>
+    <span id="print">
+        <span id="A4">
+            <form action="">
+                <span id="heading">
+                    <img src="../lib/logo.png">
+                    <h1>आगरी समाज प्रवोधन संस्था, डोंबिवली</h1>
+                </span>
+                <p class="hr"></p>
+                <span class="space">
+                    <span>
+                        <label class="textBox">
+                            <span>वधू /वराचे संपूर्ण नाव</span>
+                            <input class="input" type="text" name="FullNameOfBride_Groom" placeholder=" ">
+                        </label>
+                        <label class="textBox">
+                            <span>पत्ता</span>
+                            <textarea class="input" name="Address" placeholder=" "></textarea>
+                        </label>
+                        <br>
+                        <label class="textBox">
+                            <span>जन्म स्थळ</span>
+                            <input class="input" type="text" name="PlaceOfBirth" placeholder=" ">
+                        </label>
+                    </span>
+                    <span id="photo">
+                        <img src="">
+                    </span>
+                </span>
+                <span>
+                    <label>
+                        <span>जन्म तारीख</span>
+                        <input type="date" name="BirthDate" placeholder=" ">
+                    </label>
+                    <label>
+                        <span>जन्म वेळ</span>
+                        <input type="time" name="BirthTime" placeholder=" ">
+                    </label>
+                </span>
+                <span>
+                    <label class="textBox">
+                        <span>उंची</span>
+                        <input class="input" type="number" name="HeightInFoot" placeholder=" ">
+                        <span>फुट</span>
+                    </label>
+                    <label class="textBox">
+                        <input class="input" type="number" name="HeightInInch" placeholder=" ">
+                        <span>इंच</span>
+                    </label>
+                    <label class="textBox">
+                        <input class="input" type="text" name="DescribeColor" placeholder=" ">
+                        <span>वर्ण(रंग)</span>
+                    </label>
+                </span>
+                <label class="textBox">
+                    <span>शिक्षण</span>
+                    <input class="input" type="text" name="Qualification" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>नोकरी / व्यवसाय</span>
+                    <input class="input" type="text" name="Occupation" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>मसिक उत्पन्</span>
+                    <input class="input" type="number" name="Salary" placeholder=" ">
+                </label>
+                <span>
+                    <label class="center">
+                        <span>राहते घर</span>
+                        <input type="radio" name="Home" placeholder=" " value="स्वतःचे">
+                        <span>स्वतःचे</span>
+                    </label>
+                    <label class="center">
+                        <input type="radio" name="Home" placeholder=" " value="भाड्याचे">
+                        <span>भाड्याचे</span>
+                    </label>
+                </span>
+                <label class="textBox">
+                    <span>वधू /वराची अपेक्षा</span>
+                    <textarea class="input" type="text" name="Expectations" placeholder=" "></textarea>
+                </label>
+                <label>
+                    <span>इतर माहीती</span>
+                    <textarea name="OtherInfo"></textarea>
+                </label>
+                <span class="column">
+                    <label class="center">
+                        <input type="radio" name="OtherInfo" placeholder=" " value="प्रथम">
+                        <span>प्रथम</span>
+                    </label>
+                    <label class="center">
+                        <input type="radio" name="OtherInfo" placeholder=" " value="घटस्फोटीत">
+                        <span>घटस्फोटीत</span>
+                    </label>
+                    <label class="center">
+                        <input type="radio" name="OtherInfo" placeholder=" " value="विधुर">
+                        <span>विधुर</span>
+                    </label>
+                    <label class="center">
+                        <input type="radio" name="OtherInfo" placeholder=" " value="विधवा">
+                        <span>विधवा</span>
+                    </label>
+                </span>
+                <label class="textBox">
+                    <span>वडिलांचे पूर्ण नाव</span>
+                    <input class="input" type="text" name="FatherFullName" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>व्यवसाय / नोकरी</span>
+                    <input class="input" type="text" name="GuardianOccupation" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>आईचे पूर्ण नाव</span>
+                    <input class="input" type="text" name="MotherFullName" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>कौटुंवीक माहीती</span>
+                    <textarea class="input" name="FamilyInfo" placeholder=" "></textarea>
+                </label>
+                <label class="textBox">
+                    <span>अर्जदाराची पूर्ण नाव</span>
+                    <input class="input" type="text" name="ApplicantFullName" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>वधू/वराचे नाते</span>
+                    <input class="input" type="text" name="Bride_GroomRelationship" placeholder=" ">
+                </label>
+                <label class="textBox">
+                    <span>संपर्क क.</span>
+                    <input class="input" type="tel" name="ContactNo" placeholder=" ">
+                </label>
+                <span class="space">
+                    <label>
+                        <span>दिनांक</span>
+                        <input type="date" name="FormFilledDate" placeholder=" ">
+                    </label>
+                    <label class="col">
+                        <span id="sign">
+                            <img src="">
+                        </span>
+                        <span>अर्जदाराची सही</span>
+                    </label>
+                </span>
+            </form>
+        </span>
+    </span>
+    <script src="main.js"></script>
+</body>
+
+</html>
