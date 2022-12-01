@@ -5,7 +5,7 @@ const
     },
     $ = (e) => document.querySelector(e);
 
-let last_record_no = 1;
+let last_record_no = 2;
 
 //create JSON object from 2 dimensional Array
 function arrToObject(arr) {
@@ -29,6 +29,7 @@ function arrToObject(arr) {
 }
 async function add_records(records) {
     records.forEach(async function (data) {
+        console.log(data)
         $("main").innerHTML += `
          <div class="list">
             <input type="checkbox">
@@ -39,7 +40,6 @@ async function add_records(records) {
             </a>
             <button type="button">View</button>
             <button type="button">Download</button>
-            <button type="button">Delete</button>
             <input type="text" name="data" value='${"JSON.stringify(d)"}' hidden readonly/>
         </div>
         `;
@@ -53,21 +53,22 @@ function fetch_records() {
     console.log(last_record_no)
     fetch(URLS.admin, {
         method: "POST",
+        // mode: "no-cors",
         body: JSON.stringify({
+            type: "info",
             lastrecord: last_record_no
         })
-    })
-        .then(response => response.json())
+    }).then(response => response)
         .then(function (res) {
             console.log(res)
             if (!res.data) {
                 no_records_available()
                 return
             }
-            last_record_no = last_record_no + (res.data).length - 1
-            // console.log(res.data.length, last_record_no)
-            let data = arrToObject(res.data)
-            add_records(data)
+            last_record_no = (res.data.pop())[0]
+            console.log(last_record_no)
+            // let data = arrToObject(res.data)
+            // add_records(data)
         })
 
 }
@@ -87,6 +88,6 @@ function handleInfiniteScroll() {
 
 
 
-window.onscroll = handleInfiniteScroll
+// window.onscroll = handleInfiniteScroll
 handleInfiniteScroll()
 // end

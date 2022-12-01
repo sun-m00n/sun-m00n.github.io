@@ -28,7 +28,6 @@ function handleFormSubmission(e) {
         if (field.type != "file") val = field.value
         else if (field.type == "file") val = field.getAttribute("data-of-cropped-image")
         data[name] = val
-        // console.log(name)
     })
 
     document.querySelector("button[type='submit']").setAttribute("disabled", true)
@@ -37,7 +36,6 @@ function handleFormSubmission(e) {
         method: "POST",
         body: JSON.stringify(data),
     })
-        // .then(response => console.log(response))
         .then(response => response.json())
         .then(result => {
             alert("Response has been collected.")
@@ -51,38 +49,7 @@ function handleFormSubmission(e) {
                 handleFormSubmission(e)
             }, 60 * 1000, e)
         })
-    // console.log(data)
-    // console.log(Object.keys(data))
-    // console.log(sizeOfData(data))
 }
 
 document.querySelector("form").onsubmit = handleFormSubmission
-
-
-// function sizeOfData(json_data) {
-//     let str = null;
-//     if (typeof json_data === 'string') str = json_data
-//     else str = JSON.stringify(json_data)
-//     // Get the length of the Uint8Array
-//     let bytes = new TextEncoder().encode(str).length;
-//     let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-//     if (bytes == 0) return `0 ${sizes[0]}`;
-//     let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-//     if (i == 0) return bytes + ' ' + sizes[i];
-//     return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
-// }
-
-function addScript(url) {
-    var script = document.createElement('script');
-    script.type = 'application/javascript';
-    script.src = url;
-    document.head.appendChild(script);
-}
-addScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
-
-
-function print() {
-    let e = document.querySelector("form")
-    html2pdf(e)
-}
 

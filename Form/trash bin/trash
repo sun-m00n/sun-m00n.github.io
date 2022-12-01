@@ -105,3 +105,17 @@ let api=[ "https://script.google.com/macros/s/AKfycbxQQbzNOoLTpHdxCJCdy6WR_yb49B
     ] return "https://script.google.com/macros/s/AKfycbxQQbzNOoLTpHdxCJCdy6WR_yb49BQnWhUk9azF0yVII5sBrrmH_sERts7TKMgZQCRH/exec"
     return keys[Math.round(Math.random() * keys.length)]
 }
+
+
+// function sizeOfData(json_data) {
+//     let str = null;
+//     if (typeof json_data === 'string') str = json_data
+//     else str = JSON.stringify(json_data)
+//     // Get the length of the Uint8Array
+//     let bytes = new TextEncoder().encode(str).length;
+//     let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+//     if (bytes == 0) return `0 ${sizes[0]}`;
+//     let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+//     if (i == 0) return bytes + ' ' + sizes[i];
+//     return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
+// }

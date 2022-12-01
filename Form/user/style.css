@@ -33,8 +33,6 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 480px;
-    width: 81%;
     min-width: 300px;
     padding: 15px;
     margin: 30px 0;
@@ -50,6 +48,7 @@ form * textarea {
 }
 
 form button {
+    width: 100%;
     width: fit-content !important;
     padding: 2px 36px;
 }
@@ -63,14 +62,15 @@ button {
 
 /* form heading */
 #heading {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
-    justify-content: flex-start;
-    align-items: center;
+    gap: 9px;
+    place-items: center;
+    text-align: center;
 }
 
 #heading img {
-    width: 90px;
+    width: 120px;
     border: none;
     vertical-align: middle;
     border-radius: 50% !important;
@@ -175,10 +175,4 @@ input[type="number"]+span {
 .column {
     display: flex;
     flex-direction: column;
-}
-
-.hr {
-    width: 90%;
-    height: 1px;
-    background-color: silver;
 }
