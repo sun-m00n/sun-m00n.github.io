@@ -8,8 +8,10 @@
     <title>ADMIN</title>
 
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/admin/style.css">
+    <link rel="stylesheet" href="/print/print.css">
     <script src="../lib/sorttable.js"></script>
+    <!-- <script src="/print/main.js"></script> -->
 </head>
 
 <body>
@@ -42,7 +44,153 @@
         <tbody></tbody>
     </table>
     <!-- <script src="main.js"></script> -->
-    <script src="two.js"></script>
+
+    <span id="print">
+        <span id="A4">
+            <form action="">
+                <span id="heading">
+                    <img src="../lib/logo.png">
+                    <h1>आगरी समाज प्रवोधन संस्था, डोंबिवली</h1>
+                </span>
+                <p class="hr"></p>
+                <span class="space">
+                    <span>
+                        <label>
+                            <span>वधू /वराचे संपूर्ण नाव</span>
+                            <input type="text" name="FullNameOfBride_Groom">
+                        </label>
+                        <label>
+                            <span>पत्ता</span>
+                            <textarea name="Address"></textarea>
+                        </label>
+                        <br>
+                        <label>
+                            <span>जन्म स्थळ</span>
+                            <input type="text" name="PlaceOfBirth">
+                        </label>
+                    </span>
+                    <span id="photo">
+                        <img src="">
+                    </span>
+                </span>
+                <span>
+                    <label>
+                        <span>जन्म तारीख</span>
+                        <input type="date" name="BirthDate">
+                    </label>
+                    <label>
+                        <span>जन्म वेळ</span>
+                        <input type="time" name="BirthTime">
+                    </label>
+                </span>
+                <span>
+                    <label>
+                        <span>उंची</span>
+                        <input type="number" name="HeightInFoot">
+                        <span>फुट</span>
+                    </label>
+                    <label>
+                        <input type="number" name="HeightInInch">
+                        <span>इंच</span>
+                    </label>
+                    <label>
+                        <input type="text" name="DescribeColor">
+                        <span>वर्ण(रंग)</span>
+                    </label>
+                </span>
+                <label>
+                    <span>शिक्षण</span>
+                    <input type="text" name="Qualification">
+                </label>
+                <label>
+                    <span>नोकरी / व्यवसाय</span>
+                    <input type="text" name="Occupation">
+                </label>
+                <label>
+                    <span>मसिक उत्पन्</span>
+                    <input type="number" name="Salary">
+                </label>
+                <span>
+                    <label>
+                        <span>राहते घर</span>
+                        <input type="radio" name="Home" value="स्वतःचे">
+                        <span>स्वतःचे</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="Home" value="भाड्याचे">
+                        <span>भाड्याचे</span>
+                    </label>
+                </span>
+                <label>
+                    <span>वधू /वराची अपेक्षा</span>
+                    <textarea type="text" name="Expectations"></textarea>
+                </label>
+                <label>
+                    <span>इतर माहीती</span>
+                    <textarea name="OtherInfo"></textarea>
+                </label>
+                <span>
+                    <label>
+                        <input type="radio" name="OtherInfo" value="प्रथम">
+                        <span>प्रथम</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="OtherInfo" value="घटस्फोटीत">
+                        <span>घटस्फोटीत</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="OtherInfo" value="विधुर">
+                        <span>विधुर</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="OtherInfo" value="विधवा">
+                        <span>विधवा</span>
+                    </label>
+                </span>
+                <label>
+                    <span>वडिलांचे पूर्ण नाव</span>
+                    <input type="text" name="FatherFullName">
+                </label>
+                <label>
+                    <span>व्यवसाय / नोकरी</span>
+                    <input type="text" name="GuardianOccupation">
+                </label>
+                <label>
+                    <span>आईचे पूर्ण नाव</span>
+                    <input type="text" name="MotherFullName">
+                </label>
+                <label>
+                    <span>कौटुंवीक माहीती</span>
+                    <textarea name="FamilyInfo"></textarea>
+                </label>
+                <label>
+                    <span>अर्जदाराची पूर्ण नाव</span>
+                    <input type="text" name="ApplicantFullName">
+                </label>
+                <label>
+                    <span>वधू/वराचे नाते</span>
+                    <input type="text" name="Bride_GroomRelationship">
+                </label>
+                <label>
+                    <span>संपर्क क.</span>
+                    <input type="number" name="ContactNo">
+                </label>
+                <span class="space">
+                    <label>
+                        <span>दिनांक</span>
+                        <input type="date" name="TimeStamp">
+                    </label>
+                    <label class="col">
+                        <span id="sign">
+                            <img src="">
+                        </span>
+                        <span>अर्जदाराची सही</span>
+                    </label>
+                </span>
+            </form>
+        </span>
+    </span>
+    <script src="/admin/two.js"></script>
 </body>
 
 </html>
