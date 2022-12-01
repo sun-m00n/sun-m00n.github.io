@@ -1,0 +1,220 @@
+// const URL = "https://docs.google.com/spreadsheets/d/1UP9aVVwoiB5ZSuoWIsvzSBSNyhW__xTCZPt8gs0qgfQ/edit#gid=0"
+const URL = "https://docs.google.com/spreadsheets/d/1DGx_EbY7tAWT73jnlyrJxnF4p9CB0Smj40kMfM-RGGM/edit#gid=0"
+const workbook = SpreadsheetApp.openByUrl(URL)
+
+function OUTPUT(type,value){
+  if(type == "text") return ContentService.createTextOutput(value)
+  else if(type == "json") return ContentService.createTextOutput(JSON.stringify(value))
+  else if(type == "html")return HtmlService.createHtmlOutput(value)
+}
+
+// function getRow(rowID){
+//   return workbook.getRange(`$A${rowID}:$Y${rowID}`).getValues()
+// }
+
+function NewRecords(oldRecordsID){
+  let records = workbook.getRange(`$A1:$C${workbook.getLastRow()}`).getValues()
+  let newRecords = [];
+  let recordsID = workbook.getRange(`B1:B${workbook.getLastRow()}`).getValues()
+  
+  recordsID.filter(function(value,index,array){
+    if(!oldRecordsID.includes(value[0])){
+      newRecords.push(records[index])
+      return index
+    }
+  })
+  
+  return newRecords
+}
+
+
+function doGet(e){
+  return OUTPUT("json",{name:"admin api"})
+}
+
+function doPost(e){
+  let form= JSON.parse(e.postData.contents)
+  if(form.lastrecord)
+    return OUTPUT("json",fetch_records(form.lastrecord))
+  else 
+    return OUTPUT("json",[])
+}
+
+function Test(){
+  // console.log(NewRecords([1,2,3,5,7,10,12,13,14,15,16,17]))
+  console.log(
+    fetch_records(2)
+  )
+}
+
+const no_of_records_to_be_fetched = 10
+
+function fetch_records(start){
+  let lastrow = workbook.getLastRow(),end,header = []
+  
+  if(lastrow < start){ return [] }
+  else if(start + no_of_records_to_be_fetched > lastrow) { end = lastrow }
+  else { end = start + no_of_records_to_be_fetched }
+
+  if(start != 1) header = (workbook.getRange(`$A1:$C1`).getValues())[0]
+
+  let rowData = workbook.getRange(`$A${start}:$C${end}`).getValues()
+  
+  if(header.length > 0) rowData.unshift(header)
+
+  return {
+    data: rowData
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const URL = "https://docs.google.com/spreadsheets/d/1UP9aVVwoiB5ZSuoWIsvzSBSNyhW__xTCZPt8gs0qgfQ/edit#gid=0"
+const url = "https://docs.google.com/spreadsheets/d/1DGx_EbY7tAWT73jnlyrJxnF4p9CB0Smj40kMfM-RGGM/edit#gid=0"
+const wb = SpreadsheetApp.openByUrl(url);
+
+let _uids = [];
+
+const JsonOutput = (data)=> ContentService.createTextOutput(JSON.stringify(data))
+
+// function getRow(rowID){
+//   return wb.getRange(`$A${rowID}:$Y${rowID}`).getValues()
+// }
+
+
+function doGet(e){
+  return OUTPUT("json",{name:"admin api"})
+}
+let no_of_records_allowed_to_fetched = 50
+function doPost(e){
+  let form= JSON.parse(e.postData.contents)
+  let request_type = form.type
+  let response;
+
+  if(request_type == "records" && form.uids.length < 6){}
+  else if(request_type == "info" && form.ids){
+    return JsonOutput(fetch_records(form.ids))
+  }
+  else if(request_type == "uids"){ response = uids() }
+
+  if(response) return OUTPUT("json",response)
+  else return OUTPUT("json",[])
+}
+
+function uids(){
+  let range = wb.getRange(`$B$2:$B$${wb.getLastRow()}`)
+  let data=range.getValues().flat()
+  _uids = data
+  return data
+}
+
+function single_record(id){
+  console.log(_uids.findIndex(function(v,i){
+    if(v == id) return i
+  }))
+}
+
+function Test(){
+  // console.log(NewRecords([1,2,3,5,7,10,12,13,14,15,16,17]))
+  let uid = uids()
+  // let d = del([1,3,6,9,10])
+  single_record(9)
+  console.log(
+    uid.length,
+    // fetch_records(2)
+  )
+}
+
+// const no_of_records_to_be_fetched = 10
+
+function fetch_records(start){
+  let lastrow = wb.getLastRow(),end,header = []
+  
+  if(lastrow < start){ return [] }
+  else if(start + no_of_records_to_be_fetched > lastrow) { end = lastrow }
+  else { end = start + no_of_records_to_be_fetched }
+
+  if(start != 1) header = (wb.getRange(`$B1:$E1`).getValues())[0]
+
+  let rowData = wb.getRange(`$B${start}:$E${end}`).getValues()
+  
+  if(header.length > 0) rowData.unshift(header)
+
+  return {
+    data: rowData
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// end
+// end

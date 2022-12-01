@@ -31,8 +31,45 @@ const GET = {
         // render
     }
 }
-function get_IDS() { }
-function get_INFO() { }
+
+let myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Cookie", "NID=511=pjEz7jYmE1eIwlDhVQyK-bf8rW5Khjduu01vvngCxMfH1YLkMFKt4ClEfUJvBoiPHyjYQdMugGMig1HHX-AuAcxMv_VpVahHyROTsjIzm2opOEvub1QaQkVjfRYDUEkEeqbJ6PDELClYiRYuLDR_8H5JOn-2dBPxMGfvrGQ4xjc");
+
+function get_IDS() {
+    fetch(api_url, {
+        method: 'POST',
+        // headers: myHeaders,
+        body: JSON.stringify({ type: "ids" }),
+        redirect: 'follow'
+    })
+        .then(response => response.text())
+        .then(function (ids) {
+            _ids = ids
+            _unfetched_info_ids = _ids
+            _unfetched_record_ids = _ids
+            console.log(ids)
+            get_INFO()
+        })
+        .catch(error => console.log('error', error));
+}
+function get_INFO() {
+    let id = _unfetched_info_ids.slice(0, 25)
+    fetch(api_url, {
+        method: 'POST',
+        // mode: "no-cors",
+        // headers: myHeaders,
+        body: JSON.stringify({ type: "info", ids: id }),
+        redirect: 'follow'
+    })
+        .then(response => response.text())
+        .then(function (data) {
+            _fetched_info_ids += [...id]
+
+            console.log(data)
+        })
+        .catch(error => console.log('error', error));
+}
 function get_RECORDS() { }
 function arr2obj(arr) {
     //assuming header
@@ -68,6 +105,7 @@ function download() { }
 function downloadAll() { }
 
 function TEST() {
+    get_IDS()
     // render({ formNo: 1, n: "A", b: 'b', contact: 908765 })
     // render({ formNo: 2, n: "b", b: 'e', contact: 908765 })
     // render({ formNo: 5, n: "c", b: 'd', contact: 908765 })
