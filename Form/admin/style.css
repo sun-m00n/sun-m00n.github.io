@@ -49,7 +49,7 @@ header input {
 
 /* Sortable tables */
 table.sortable thead {
-    font-weight: bold;
+    background-color: rgb(245, 245, 245);
     cursor: pointer;
 }
 
@@ -69,6 +69,7 @@ table.sortable * td {
     --height: 1000;
 }
 
+#print,
 #print * {
     margin: 0;
     padding: 0;
@@ -80,6 +81,7 @@ table.sortable * td {
     display: none;
 }
 
+/* #print, */
 #A4 {
     width: var(--width)px !important;
     height: var(--height)px !important;
@@ -89,7 +91,7 @@ table.sortable * td {
 }
 
 #print * form {
-    margin: 18px;
+    margin: 0 18px;
 }
 
 #heading {
@@ -103,54 +105,72 @@ table.sortable * td {
     max-width: 180px;
 }
 
-form p.hr {
+#print * form p.hr {
     width: 100%;
-    height: 2px;
+    height: 3px;
     margin: 9px 0;
-    background-color: black;
+    box-shadow: 0 1px black;
 }
 
 
-label {
+#print * label {
     display: flex;
-    margin: 18px 9px;
+    margin: 15px 9px;
     align-items: center;
 }
 
-label input,
-label textarea {
-    margin-left: 9px;
-    border-bottom: 1px solid;
+#print * input[type="radio"] {
+    position: relative;
+    opacity: 0;
 }
 
-input[type="radio"] {
-    margin-right: 6px;
+#print * input[type="radio"]+span {
+    position: relative;
+    display: none;
 }
 
-form>span {
+#print * input[type="radio"]:checked+span {
+    display: inline-block;
+}
+
+#print * form>span {
     display: flex;
 }
 
-.space {
-    justify-content: space-between;
-}
-
-.col {
+#sign,
+#sign img,
+#photo,
+#photo img {
+    width: 150px;
+    float: right;
     flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
-#sign {
-    min-width: 150px;
-    min-height: 60px;
-    max-width: 300px;
-    max-height: 120px;
-    border: 1px solid;
+#print * span[name] {
+    min-width: 60px;
+    margin: 0 9px;
 }
 
-#photo {
-    min-width: 150px;
-    min-height: 150px;
-    max-width: 300px;
-    max-height: 300px;
-    border: 1px solid;
+#print * .width-30 {
+    min-width: 30px !important;
+    text-align: end;
+}
+
+#print * .label {
+    font-weight: bold;
+}
+
+#print * .label::after {
+    content: ":";
+    margin: 3px;
+}
+
+#print * .label.e::after {
+    content: none;
+}
+
+#print * .space {
+    justify-content: space-between;
 }
