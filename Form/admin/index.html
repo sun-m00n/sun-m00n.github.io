@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
 
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="/admin/style.css">
-    <link rel="stylesheet" href="/print/print.css">
+    <link rel="stylesheet" href="style.css">
     <script src="../lib/sorttable.js"></script>
-    <!-- <script src="/print/main.js"></script> -->
+    <script src="../lib/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
@@ -21,14 +19,6 @@
             <button type="button" class="icon_btn">Fill Form</button>
         </a>
     </header>
-    <span class="list_header">
-        <!-- <label>
-            <input type="checkbox" onchange="">
-            <span>Select All</span>
-        </label> -->
-        <!-- <button type="button" class="icon_btn" onclick="">Sync</button> -->
-        <!-- <a href="https://sun-m00n.github.io/Form/user/index2.html" target="_blank" rel="noopener noreferrer"> -->
-    </span>
     <table class="sortable">
         <thead>
             <tr>
@@ -37,13 +27,12 @@
                 <th>B</th>
                 <th>Contact</th>
                 <th>
-                    <button type="button" class="icon_btn" onclick="">Download All</button>
+                    <button type="button" class="icon_btn" onclick="init_download_all()">Download All</button>
                 </th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
-    <!-- <script src="main.js"></script> -->
 
     <span id="print">
         <span id="A4">
@@ -190,7 +179,7 @@
             </form>
         </span>
     </span>
-    <script src="/admin/two.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

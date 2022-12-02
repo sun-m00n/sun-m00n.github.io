@@ -268,24 +268,7 @@ function get_RECORDS(id) {
     //     })
     //     .catch(error => console.log('error', error));
 }
-function arr2obj2(arr) {
-    //assuming header
-    let keys = arr[0];
-    //vacate keys from main array
-    let newArr = arr.slice(1, arr.length);
 
-    let array = [],
-        data = newArr,
-        cols = keys,
-        l = cols.length;
-    for (let i = 0; i < data.length; i++) {
-        let d = data[i], o = {};
-        for (let j = 0; j < l; j++)o[cols[j]] = d[j];
-        array.push(o);
-    }
-    console.log(array)
-    return array;
-}
 function objFrom2Darr(arr, primary_key = 0) {
     let keys = arr[0]
     arr.shift()
@@ -299,6 +282,7 @@ function objFrom2Darr(arr, primary_key = 0) {
     }
     return obj
 }
+
 async function render(data) {
     let p = document.createElement("table")
     p.innerHTML = `<tr>
@@ -313,15 +297,19 @@ async function render(data) {
 }
 function init_download(data) {
 
-    console.log(data)
+    // console.log(data)
     // fill data
+    _$("#A4 * #sign img").src = data["ApplicantSign"]
+    _$("#A4 * #photo img").src = data["ApplicantImage"]
     for (let key in data) {
         let e = _$(`[name='${key}']`)
-        console.log(e)
+        if (e == null) continue
+        e.value = data[key]
     }
     // console.log(key)
 
     // print
+    // _$("#print").style.display = "block"
     // html2pdf()
     //     .set({
     //         margin: 0,

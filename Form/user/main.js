@@ -3,11 +3,13 @@
 let input_names = [];
 (function () {
     // apply CustomCroppr
-    ["ApplicantImage", "ApplicantSign"].forEach(fileTagID => {
-        let i = document.querySelector(`input[name='${fileTagID}']`)
+    let imageTags = ["ApplicantImage", "ApplicantSign"]
+    let ratios = [1.2, 0.5]
+    for (let index in imageTags) {
+        let i = document.querySelector(`input[name='${imageTags[index]}']`)
         let btns = (i.parentNode).querySelectorAll("button")
-        CustomCroppr.init({ input: i, crop: btns[0], view: btns[1] })
-    })
+        CustomCroppr.init({ input: i, crop: btns[0], view: btns[1], ratio: ratios[index] })
+    }
 
     // collect form input names
     let names = [];

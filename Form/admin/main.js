@@ -1,95 +1,163 @@
-const api_keys = {
-    client: "https://script.google.com/macros/s/AKfycbwp1qkRfKWUYBZUF4avhbGgDRWXcnrkfRoXcZaXRJHgFmlafbqr-HlG8uTpWPdGV4fb/exec",
-    admin: "https://script.google.com/macros/s/AKfycbzEIbRCEIle4IR3Ax073-BYS-gSRkgXGzjHsYOT06MFzFrOO5NLPbn2z1Cv6lrKl8aV/exec"
-}
-//create JSON object from 2 dimensional Array
-function arrToObject(arr) {
-    //assuming header
-    var keys = arr[0];
-    //vacate keys from main array
-    var newArr = arr.slice(1, arr.length);
+const api_url = "https://script.google.com/macros/s/AKfycbzEIbRCEIle4IR3Ax073-BYS-gSRkgXGzjHsYOT06MFzFrOO5NLPbn2z1Cv6lrKl8aV/exec"
+const _$ = (e) => document.querySelector(e)
 
-    var formatted = [],
-        data = newArr,
-        cols = keys,
-        l = cols.length;
-    for (var i = 0; i < data.length; i++) {
-        var d = data[i],
-            o = {};
-        for (var j = 0; j < l; j++)
-            o[cols[j]] = d[j];
-        formatted.push(o);
-    }
-    return formatted;
-}
-function FETCH(type) {
-    let req_body = {}
-    if (type == "all") req_body.type = "all"
-    else if (type == "new") req_body.type = "new"
-    fetch(api_keys.admin, {
-        method: "POST",
-        body: JSON.stringify(req_body)
+let _ids = []
+let _fetched_info_ids = []
+let _unfetched_info_ids = []
+let _fetched_record_ids = []
+let _unfetched_record_ids = []
+let _info = {}
+let _record = {}
+
+function get_IDS() {
+    fetch(api_url, {
+        method: 'POST',
+        body: JSON.stringify({ type: "ids" }),
     })
         .then(response => response.json())
-        .then(result => {
-            // console.log(result)
-            // (result.data).forEach(async function (a) {
-            //     // console.log(a)
-            //     addRecord(a)
-            // })
-            addRecords(result.data)
+        .then(function (ids) {
+            _ids = ids.reverse()
+            _unfetched_info_ids = _ids
+            _unfetched_record_ids = _ids
+            get_INFO()
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log('error', error));
 }
-function DELETE(formID) {
-    fetch(api_keys.client, {
-        method: "POST",
-        body: JSON.stringify({ formNo: formID })
+
+function get_INFO() {
+    let id = _unfetched_info_ids.splice(0, 25)
+    fetch(api_url, {
+        method: 'POST',
+        body: JSON.stringify({ type: "basic_info", ids: id }),
     })
         .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.log(error))
+        .then(function (data) {
+            _fetched_info_ids += [...id]
+            let arr = objFrom2Darr(data)
+            _info = { ..._info, ...arr }
+            for (let i in arr) {
+                render(arr[i])
+                if (_unfetched_info_ids.indexOf(Number(i)) < 0) continue
+                _unfetched_info_ids.splice(
+                    _unfetched_info_ids.indexOf(Number(i)),
+                    1)
+            }
+            // console.log(_fetched_info_ids, _unfetched_info_ids)
+        })
+        .catch(error => console.log('error', error));
 }
-const main = document.querySelector("main")
-async function addRecord(record) {
-    console.log(record)
-    main.innerHTML += `
-         <div class="list">
-            <input type="checkbox">
-            <input type="text" name="formID" value="${record[0]}" readonly>
-            <input type="text" name="name" value="${record[1]}" readonly>
-            <a href="tel:${"d.ContactNo"}">
-                <input type="tel" name="contactNo" value="${"d.ContactNo"}" readonly>
-            </a>
-            <button type="button">View</button>
-            <button type="button">Download</button>
-            <button type="button">Delete</button>
-            <input type="text" name="data" value='${"JSON.stringify(d)"}' hidden readonly/>
-        </div>
-        `;
-}
-function addRecords(data) {
-    data = arrToObject(data)
-    data.forEach(async function (d) {
-        main.innerHTML += `
-         <div class="list">
-            <input type="checkbox">
-            <input type="text" name="formID" value="${d["Form No."]}" readonly>
-            <input type="text" name="name" value="${d.FullNameOfBride_Groom}" readonly>
-            <a href="tel:${d.ContactNo}">
-                <input type="tel" name="contactNo" value="${d.ContactNo}" readonly>
-            </a>
-            <button type="button">View</button>
-            <button type="button">Download</button>
-            <button type="button">Delete</button>
-            <input type="text" name="data" value='${JSON.stringify(d)}' hidden readonly/>
-        </div>
-        `;
-    })
 
-    fetched_data.push(...data)
-    // console.log(data)
-    console.log(fetched_data)
+async function get_RECORDS(id) {
+    fetch(api_url, {
+        method: 'POST',
+        body: JSON.stringify({ type: "records", ids: id }),
+    })
+        .then(response => response.json())
+        .then(function (data) {
+            let arr = objFrom2Darr(data, 1)
+            _fetched_record_ids += [...id]
+            _record = { ..._record, ...arr }
+            for (let i in arr) {
+                print(_record[i])
+                _unfetched_record_ids.splice(
+                    _unfetched_record_ids.indexOf(Number(i)),
+                    1)
+                break;
+            }
+            console.log(data, arr)
+        })
+        .catch(error => console.log('error', error));
 }
-let fetched_data = [];
-FETCH("all")
+
+function objFrom2Darr(arr, primary_key = 0) {
+    let keys = arr[0]
+    arr.shift()
+    let obj = {}
+    for (let i in arr) {
+        let o = {}
+        for (let j in arr[i]) {
+            o[keys[j]] = arr[i][j]
+        }
+        obj[arr[i][primary_key]] = o
+    }
+    return obj
+}
+
+async function render(data) {
+    let p = document.createElement("table")
+    p.innerHTML = `<tr>
+            <td>${data["Form No."]}</td>
+            <td>${data.FullNameOfBride_Groom}</td>
+            <td>${data.ApplicantFullName}</td>
+            <td>${data.ContactNo}</td>
+            <td><button data-formno="${data['Form No.']}" onclick="get_RECORDS([this.getAttribute('data-formno')])">Download</button></td>
+        </tr>`;
+    console.log()
+    _$("table.sortable tbody").prepend(p.querySelector("tr"))
+}
+
+function print(data) {
+    // fill data
+    _$("#A4 * #sign img").src = data["ApplicantSign"]
+    _$("#A4 * #photo img").src = data["ApplicantImage"]
+    for (let key in data) {
+        let e = _$(`[name='${key}']`)
+        if (e == null) continue
+        e.value = data[key]
+    }
+    // console.log(key)
+
+    // print
+    // _$("#print").style.display = "block"
+    // html2pdf()
+    //     .set({
+    //         margin: 0,
+    //         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    //     })
+    //     .from(_$("#A4"))
+    //     .save()
+}
+function* download_step() {
+
+}
+function init_download_all() {
+    let r = { 1: 0, 2: 0 }
+    // for (const key in _record) {
+    for (const key in r) {
+        console.log(key)
+    }
+}
+
+// function TEST() {
+// get_IDS()
+// render({ formNo: 1, n: "A", b: 'b', contact: 908765 })
+// render({ formNo: 2, n: "b", b: 'e', contact: 908765 })
+// render({ formNo: 5, n: "c", b: 'd', contact: 908765 })
+// render({ formNo: 7, n: "d", b: 'c', contact: 908765 })
+// render({ formNo: 9, n: "e", b: 'v', contact: 908765 })
+// setTimeout(() => {
+//     render({ formNo: 12, n: "f", b: 'a', contact: 908765 })
+// }, 3000);
+// arr2obj([["a", 'b', 'c'], ["d", 'e', 'f'], ["g", 'h', 'i']])
+// } TEST()
+
+// get_IDS()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// end

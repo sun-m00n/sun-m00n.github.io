@@ -19,7 +19,7 @@ body {
 }
 
 #print {
-    display: none;
+    /* display: none; */
 }
 
 #A4 {
@@ -63,6 +63,8 @@ label input,
 label textarea {
     margin-left: 9px;
     border-bottom: 1px solid;
+    width: max-content;
+    height: max-content;
 }
 
 input[type="radio"] {
@@ -81,18 +83,10 @@ form>span {
     flex-direction: column;
 }
 
-#sign {
-    min-width: 150px;
-    min-height: 60px;
-    max-width: 300px;
-    max-height: 120px;
-    border: 1px solid;
-}
-
-#photo {
-    min-width: 150px;
-    min-height: 150px;
-    max-width: 300px;
-    max-height: 300px;
-    border: 1px solid;
+#sign,
+#sign img,
+#photo,
+#photo img {
+    width: 150px;
+    /* border: 1px solid; */
 }

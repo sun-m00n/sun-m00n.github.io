@@ -4,12 +4,14 @@ let CustomCroppr = {
         img: "",
         croppr: "",
         current_input_tag: "",
+        ratio: 1
     },
-    init: function (a = { input, crop: undefined, view: undefined }) {
+    init: function (a = { input, crop: undefined, view: undefined, ratio: 1 }) {
 
-        let { input, crop, view } = a
+        let { input, crop, view, ratio } = a
         input.onchange = function (e) {
             let file = e.target.files[0]
+            CustomCroppr.$.ratio = ratio
             if (file.type.includes("image")) {
                 CustomCroppr.$.current_input_tag = e.target
                 e.target.setAttribute("data-of-cropped-image", null)
@@ -53,7 +55,11 @@ let CustomCroppr = {
                 CustomCroppr.$.img = document.querySelector("#croppr_editor_body_img")
                 CustomCroppr.$.img.onload = function () {
                     // CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, { startSize: [x, x, t] });
-                    CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, { startSize: [x, y, t] });
+                    CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, {
+                        startSize: [x, y, t],
+                        aspectRatio: CustomCroppr.$.ratio,
+                        minSize: [50, 50, "px"]
+                    });
 
                     CustomCroppr.window.open()
                     document.querySelector("#croppr_editor").classList.add("open")
