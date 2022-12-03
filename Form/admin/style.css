@@ -41,6 +41,15 @@ button:hover {
 }
 
 /* header */
+/* header {
+    display: grid;
+    place-items: center;
+} */
+
+header {
+    margin: 9px 0 0 9px;
+}
+
 header input {
     padding: 6px 9px;
     border: 1px solid;
@@ -48,129 +57,46 @@ header input {
 }
 
 /* Sortable tables */
-table.sortable thead {
-    background-color: rgb(245, 245, 245);
+table.sortable thead * {
+    font-weight: lighter;
     cursor: pointer;
+}
+
+table.sortable {
+    border-collapse: collapse;
 }
 
 table.sortable * th,
 table.sortable * td {
     min-width: 100px;
+    padding: 0 9px;
+    /* border: 1px solid rgba(0, 0, 0, .5); */
 }
 
-
-
-
-/*  */
-/* print  */
-/*  */
-:root {
-    --width: 790;
-    --height: 1000;
+tr.hide {
+    display: none;
 }
 
-#print,
-#print * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    border: 0;
+tr td:first-child,
+tr td:last-child {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
 }
 
 #print {
     display: none;
 }
 
-/* #print, */
-#A4 {
-    width: var(--width)px !important;
-    height: var(--height)px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-#print * form {
-    margin: 0 18px;
-}
+@media (max-width: 700px) {
 
-#heading {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    place-items: center;
-}
+    #dwnbtn,
+    #dwnbtn+a button {
+        padding: 9px 15px;
+    }
 
-#heading img {
-    width: 80%;
-    max-width: 180px;
-}
-
-#print * form p.hr {
-    width: 100%;
-    height: 3px;
-    margin: 9px 0;
-    box-shadow: 0 1px black;
-}
-
-
-#print * label {
-    display: flex;
-    margin: 15px 9px;
-    align-items: center;
-}
-
-#print * input[type="radio"] {
-    position: relative;
-    opacity: 0;
-}
-
-#print * input[type="radio"]+span {
-    position: relative;
-    display: none;
-}
-
-#print * input[type="radio"]:checked+span {
-    display: inline-block;
-}
-
-#print * form>span {
-    display: flex;
-}
-
-#sign,
-#sign img,
-#photo,
-#photo img {
-    width: 150px;
-    float: right;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-#print * span[name] {
-    min-width: 60px;
-    margin: 0 9px;
-}
-
-#print * .width-30 {
-    min-width: 30px !important;
-    text-align: end;
-}
-
-#print * .label {
-    font-weight: bold;
-}
-
-#print * .label::after {
-    content: ":";
-    margin: 3px;
-}
-
-#print * .label.e::after {
-    content: none;
-}
-
-#print * .space {
-    justify-content: space-between;
 }
