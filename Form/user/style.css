@@ -22,6 +22,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex-direction: column;
 }
 
 h1 {
@@ -35,7 +37,7 @@ form {
     gap: 15px;
     min-width: 300px;
     padding: 15px;
-    margin: 30px 0;
+    margin: 0 0 60px 0;
 }
 
 form * input[type="number"],
@@ -50,7 +52,6 @@ form * textarea {
 form button {
     width: 100%;
     width: fit-content !important;
-    padding: 2px 36px;
 }
 
 input,
@@ -62,7 +63,7 @@ button {
 
 /* form heading */
 #heading {
-    width: 100%;
+    width: 90%;
     display: grid;
     gap: 9px;
     place-items: center;
@@ -74,6 +75,8 @@ button {
     border: none;
     vertical-align: middle;
     border-radius: 50% !important;
+
+    margin-top: 15px;
 }
 
 /* buttons */
@@ -175,4 +178,16 @@ input[type="number"]+span {
 .column {
     display: flex;
     flex-direction: column;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    outline: none;
+    border: 1px solid;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+input[type="file"]:hover::-webkit-file-upload-button {
+    background-color: tomato;
+    color: white;
 }
