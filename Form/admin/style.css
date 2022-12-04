@@ -25,16 +25,21 @@ body {
 header {
     position: fixed;
     bottom: 0;
-    height: 6vh;
 
-    padding: 9px;
+    padding: 9px 3px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    border-top: 1px solid #00000030;
+}
+
+header .flex {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-
-    width: 100%;
-    border-top: 1px solid #00000030;
 }
 
 #search_bar {
@@ -68,6 +73,7 @@ svg:hover {
 table.sortable thead {
     position: sticky;
     top: 0;
+    background-color: #fff !important;
 }
 
 table.sortable thead * {
@@ -105,8 +111,14 @@ a {
 }
 
 #table {
+    position: fixed;
+    top: 0;
     width: 100vw;
-    height: 92vh;
+    height: 80vh;
     margin: 9px;
     overflow: scroll !important;
+}
+
+.hide {
+    display: none;
 }

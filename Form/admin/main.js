@@ -231,7 +231,7 @@ function downloadPDF(data) {
     setTimeout(() => {
         html2pdf().set({
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        }).from(makePDF).save(`${data["Form No."]}-${new Date()}`);
+        }).from(makePDF).save(`${data["Form No."]}-${Date.now()}`);
 
     }, 1000);
 }
@@ -264,6 +264,17 @@ function search(value) {
         if (context.includes(value)) item.classList.remove("hide")
         else item.classList.add("hide")
     })
+}
+
+function TogglePDFFieldsVisibility(isCheck) {
+    console.log(isCheck)
+    if (isCheck) {
+        _$(`[name="Address"]`).parentNode.classList.add("hide")
+        _$(`[name="ContactNo"]`).parentNode.classList.add("hide")
+        return
+    }
+    _$(`[name="Address"]`).parentNode.classList.remove("hide")
+    _$(`[name="ContactNo"]`).parentNode.classList.remove("hide")
 }
 
 get_IDS()
