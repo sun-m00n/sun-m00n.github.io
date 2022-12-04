@@ -94,6 +94,8 @@ function get_INFO() {
             }
         })
         .catch(error => console.log('error', error));
+
+    get_INFO()
 }
 async function get_RECORDS(id) {
     let filteredID = [...id]
@@ -140,12 +142,13 @@ function del_RECORD(id) {
     })
         .then(response => response.json())
         .then(function (data) {
-            console.log(`Record ${id[0]} has been deleted.`)
+            console.log(`Record No. ${id[0]} has been deleted.`)
             id = Number(id[0])
             if (_ids.indexOf(id)) _ids.splice(_ids.indexOf(id), 1)
             _$(`tr[name="${id}"]`).remove()
             if (_fetched_info_ids.indexOf(id)) _fetched_info_ids.splice(_fetched_info_ids.indexOf(id), 1)
             if (_fetched_record_ids.indexOf(id)) _fetched_record_ids.splice(_fetched_record_ids.indexOf(id), 1)
+            if (_rendered_items_id.indexOf(id)) _rendered_items_id.splice(_rendered_items_id.indexOf(id), 1)
         })
         .catch(error => console.log('error', error));
 }
@@ -264,6 +267,6 @@ function search(value) {
 }
 
 get_IDS()
-setInterval(get_IDS, 60 * 1000)
+
 
 // end
